@@ -9,6 +9,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         fetchInvoiceById(id),
         fetchCustomers(),
     ]);
+    //чисто для комміта
     if (!invoice) {
         notFound();
     }
