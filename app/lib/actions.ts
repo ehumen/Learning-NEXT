@@ -91,14 +91,12 @@ export async function updateInvoice(prevState: State, formData: FormData) {
 
     try {
         await sql`
-    UPDATE invoices
-    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-    WHERE id = ${id}
-  `;
+        UPDATE invoices
+        SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
+        WHERE id = ${id}
+      `;
     } catch (error) {
-        return {
-            message: 'Database Error: Failed to Update Invoice'
-        }
+        return { message: 'Database Error: Failed to Update Invoice.' };
     }
 
     revalidatePath('/dashboard/invoices');
@@ -112,18 +110,16 @@ export async function deleteInvoice(id: string) {
     try {
         await sql`DELETE FROM invoices WHERE id = ${id}`;
         revalidatePath('/dashboard/invoices');
-        return {message: 'Deleted Invoice'}
+        return { message: 'Deleted Invoice.' };
     } catch (error) {
-        return {
-            message: 'Database Error: Failed to Delete the Invoice'
-        }
+        return { message: 'Database Error: Failed to Delete Invoice.' };
     }
 }
 
 //------------------------authentication----------------------------------------------
 
 export async function authenticate(
-    prevState: string | undefined,
+    prevState: string |undefined,
     formData: FormData,
 ) {
     try {
