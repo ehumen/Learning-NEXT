@@ -1,11 +1,11 @@
 'use server';
 
-import {id} from "postcss-selector-parser";
+// import {id} from "postcss-selector-parser";
 import {z} from 'zod';
 import {sql} from "@vercel/postgres";
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
-import {signIn} from "@/auth";
+import { signIn } from '@/auth';
 
 const InvoiceSchema = z.object({
     id: z.string(),
@@ -110,7 +110,7 @@ export async function updateInvoice(
 
 //--------------------------delete invoice request--------------------------------------
 export async function deleteInvoice(id: string) {
-    throw new Error('Failed to Delete Invoice');
+    // throw new Error('Failed to Delete Invoice');
 
     try {
         await sql`DELETE FROM invoices WHERE id = ${id}`;
@@ -124,7 +124,7 @@ export async function deleteInvoice(id: string) {
 //------------------------authentication----------------------------------------------
 
 export async function authenticate(
-    prevState: string |undefined,
+    prevState: string | undefined,
     formData: FormData,
 ) {
     try {
